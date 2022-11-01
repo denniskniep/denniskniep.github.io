@@ -1,0 +1,3 @@
+baseURL = 'https://denniskniep.github.io/'
+languageCode = 'en-us'
+theme = "PaperMod"
