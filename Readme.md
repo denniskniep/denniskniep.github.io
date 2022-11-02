@@ -5,4 +5,4 @@ Test Site:
 `hugo server -D`
 
 Build
-`hugo -d ./dist`
+`hugo -d ./public`
