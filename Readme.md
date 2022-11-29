@@ -6,3 +6,7 @@ Test Site:
 
 Build
 `hugo -d ./public`
+
+
+Authors:
+// https://github.com/imorente/hugo-multiauthor-example/blob/master/site/layouts/_default/single.html

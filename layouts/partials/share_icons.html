@@ -1,0 +1,8 @@
+{{ if .Params.author }}
+  <br>
+  <h2>About the {{ cond (eq (len .Params.author) 1) "author" "authors" }}</h2>
+  
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+    {{ .Render "author-figure" }}
+  </div>
+{{ end }}
