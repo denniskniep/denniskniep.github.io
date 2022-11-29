@@ -40,10 +40,13 @@ params:
           - name: Github
             url: "https://github.com/"
     socialIcons: # optional
-      - name: "twitter"
-        url: "https://twitter.com/dennis_kniep"
+
       - name: "github"
         url: "https://github.com/denniskniep"
+      - name: "twitter"
+        url: "https://twitter.com/dennis_kniep"
+      - name: "mastodon"
+        url: "https://infosec.exchange/@dennis_kniep"        
       - name: Rss
         url: "index.xml"
     ShowBreadCrumbs: true
