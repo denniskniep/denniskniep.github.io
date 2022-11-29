@@ -1,0 +1,7 @@
+{{ if .Page.Store.Get "hasMermaid" }}
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.2.2/dist/mermaid.min.js" integrity="sha265-a390147e03a43455ae22703bf06542a15746a0df5e4da0771f1bbe7a9ed34eb6"
+  crossorigin="anonymous"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+{{ end }}
