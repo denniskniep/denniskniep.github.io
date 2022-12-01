@@ -39,7 +39,7 @@ Mobile apps and desktop applications can also authenticate via an IDP. This is t
 ### Proposal for Workaround
 “Detached FIDO Authentication” is triggered if an application does not support WebAuthn because it is using legacy WebViews for web-based authentication flows.
 
-With the “Detached FIDO Authentication” flow it is possible to “jump” out of that WebAuthn-incompatible WebView and launch an instance of the OS standard browser. The OS standard browser is able to render the FIDO authentication flow and execute it, because OS standard browser has WebAuthn support. The “Detached FIDO Authentication” flow mandates an indicator that all steps from both the WebAuthn-incompatible WebView and the OS standard browser originate from the same device. This “same device” check prevents phishing of the FIDO-authentication portion of the process. After execution of the FIDO authentication inside of the OS standard browser the user navigates back to the application and is authenticated.
+With the “Detached FIDO Authentication” flow it is possible to “jump” out of that WebAuthn-incompatible WebView and launch an instance of the OS standard browser. The OS standard browser is able to render the FIDO authentication flow and execute it, because OS standard browser has WebAuthn support. The “Detached FIDO Authentication” flow mandates an indicator that all steps from both the WebAuthn-incompatible WebView and the OS standard browser originate from the same device. This “same device” check prevents phishing of the WebAuthn-incompatible WebView portion of the process. After execution of the FIDO authentication inside of the OS standard browser the user navigates back to the application and is authenticated.
 
 ### High Level sequence diagram 
 ```mermaid
@@ -99,7 +99,7 @@ On iOS:
 Disclaimer: These methods have not been tested on all apps and devices, but serve as an example of techniques that have proven useful in our deployment 😊.
 
 ### Validating that all steps of the flow originate from the same device
-The Detached FIDO Authentication approach uses two loosely-coupled channels to achieve login. The first channel is the legacy WebView being used by the application (which does not support WebAuthn), and the second channel is the OS standard browser (which does support WebAuthn). In order to limit the opportunity for an attacker who has launched the application and is in control of the legacy WebView (first channel) from phishing a victim to provide the FIDO authentication (second channel), it is desirable to try to ensure that both channels originate from the same device.
+The Detached FIDO Authentication approach uses two loosely-coupled channels to achieve login. The first channel is the legacy WebView being used by the application (which does not support WebAuthn), and the second channel is the OS standard browser (which does support WebAuthn). In order to limit the opportunity for an attacker who has phished the victim into the application (first channel) and therefore is in control of the legacy WebView from to provide the FIDO authentication (second channel), it is desirable to try to ensure that both channels originate from the same device.
 
 One simple approach for this validation is to store the IP Address of every step of the flow and validate that IP addresses from both channels are equal.
 
@@ -122,7 +122,7 @@ It is a good idea to limit the usage of the “Detached FIDO Authentication” f
 
 In SAML and OIDC authentication flows the IDP knows which application wants to authenticate the user. Therefore the IDP could offer a configuration option on the application entity which enables or disables the “Detached FIDO Authentication”.
 
-If the application entity is a pure web application and no mobile app, it is very likely that they won't need “Detached FIDO Authentication”. If the mobile apps webview already supports webAuthn then “Detached FIDO Authentication” is also not necessary. Therefore it makes sense to fine granularity activate “Detached FIDO Authentication” only for applications which really need it.
+If the application entity is a pure web application and no mobile app or desktop app, it is very likely that they won't need “Detached FIDO Authentication”. If the applications webview already supports webAuthn then “Detached FIDO Authentication” is also not necessary. Therefore it makes sense to fine granularity activate “Detached FIDO Authentication” only for applications which really need it.
 
 ### Detailed sequence diagram
 ```mermaid
