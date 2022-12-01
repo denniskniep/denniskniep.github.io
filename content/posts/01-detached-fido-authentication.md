@@ -66,6 +66,7 @@ sequenceDiagram
     WebView->>WebView: Ensure that all steps <br> originate from the same device
     WebView-->>-Alice: detached authentication successful
 ```
+*Figure 1: High Level sequence diagram*
 
 ## Technical Approaches
 
@@ -102,6 +103,38 @@ Disclaimer: These methods have not been tested on all apps and devices, but serv
 The Detached FIDO Authentication approach uses two loosely-coupled channels to achieve login. The first channel is the legacy WebView being used by the application (which does not support WebAuthn), and the second channel is the OS standard browser (which does support WebAuthn). In order to limit the opportunity for an attacker who has phished the victim into the application (first channel) and therefore is in control of the legacy WebView from to provide the FIDO authentication (second channel), it is desirable to try to ensure that both channels originate from the same device.
 
 One simple approach for this validation is to store the IP Address of every step of the flow and validate that IP addresses from both channels are equal.
+
+
+```mermaid
+flowchart LR    
+   subgraph Device    
+    webView[App<br/>using Legacy WebView]
+    Browser[Standard Browser]
+   end
+
+    webView-->|IP: 1.2.3.4|IDP
+    Browser-->|IP: 1.2.3.4|IDP
+```
+*Figure 2: Normal Authentication Scenario - IPs are equal*
+
+```mermaid
+flowchart LR   
+   subgraph Device    
+    webView[App<br/>using Legacy WebView]
+    Browser[Standard Browser]
+   end
+
+   subgraph Attacker    
+    PhishingProxy
+   end
+
+
+    webView-->|IP: 1.2.3.4|PhishingProxy
+    PhishingProxy-->|IP: 6.6.6.6|IDP
+    Browser-->|IP: 1.2.3.4|IDP
+```
+*Figure 3: Phishing Scenario - IPs are different*
+
 
 Disclaimer: There are edge cases where a phishing proxy server might have the same IP address as the browser who executes the FIDO authentication (e.g. both behind same NAT for whatever reason i.e. WLAN)
 
@@ -195,6 +228,7 @@ sequenceDiagram
 
     WebView-->>-Alice: authentication successful
 ```
+*Figure 4: Detailed sequence diagram*
 
 ## Summary
 For sure “Detached FIDO Authentication” is not as secure and user-friendly as WebAuthn natively from a browser, however, from our point of view it is better than falling back to conventional, phishable MFA.
@@ -204,3 +238,8 @@ Having conventional MFA still in place as an option for the user means that user
 There are many popular applications in the market today utilising WebViews that do not natively support WebAuthn. We cannot determine if and when vendors will upgrade their applications with WebAuthn-compatible user agents, and we cannot wait indefinitely for vendors to roll-out FIDO2 support. 
 
 Independent of application readiness, we can now start the enforcement of FIDO-only authentication by utilising “Detached FIDO Authentication”. It remains a workaround but might be here to stay until all applications, which are relevant to us, have integrated WebAuthn support!
+
+
+## Changelog
+
+* **01.12.2022:** Added Figure 2 & Figure 3 for clarifying why IP addresses are different in a phishing scenario.
