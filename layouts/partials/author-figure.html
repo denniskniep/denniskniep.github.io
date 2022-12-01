@@ -1,8 +1,10 @@
 <figure>
+    <a href="/author/{{ urlize .Params.name }}">  
     <div style="margin-right: 50px; margin-top: 50px;display: flex; flex-direction: column;  align-items: center;">
-        <img src="{{ .Params.photo }}" alt="" style="border-radius: 50%;height: 120px;" />
+        <img src="{{ .Params.photo }}" alt="" style="border-radius: 50%;max-height: 120px;" />
       <p >        
         {{ .Params.name }}
       </p>
     </div>
+  </a>
   </figure> 

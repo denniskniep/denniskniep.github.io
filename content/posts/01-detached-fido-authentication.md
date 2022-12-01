@@ -4,7 +4,7 @@ date: 2022-11-29T23:00:00+01:00
 draft: false
 tags: ["FIDO"]
 author: ["Dennis Kniep", "Andreas Pellengahr"]
-
+comment: true
 ---
 ## TL;DR
 We want to enforce FIDO-only to achieve phishing resistant authentication without the possibility of downgrade attacks. But many web-views in legacy applications do not support WebAuthn. 

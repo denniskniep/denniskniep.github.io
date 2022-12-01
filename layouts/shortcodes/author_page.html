@@ -1,0 +1,12 @@
+<div style="display: flex;flex-direction: row;align-items: center;justify-content: space-between;flex-wrap: wrap;">
+    <div>
+        <h1 style="margin:0;">{{ .Page.Params.name }}</h1>
+        <footer class="entry-footer">
+            {{ partial "social_icons.html" .Page.Params.socialIcons }}
+        </footer>
+    </div>
+    
+    
+    <img src="{{ .Page.Params.photo }}"  style="border-radius: 50%;max-height: 220px;"/>
+</div>
+
