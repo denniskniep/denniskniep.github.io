@@ -53,6 +53,9 @@ sequenceDiagram
     Alice->>+WebView: Starts FIDO authentication flow
     WebView-->>-Alice: FIDO not possible
 
+    Alice->>+WebView: Start detached authentication
+    WebView-->>-Alice: 
+
 ```
 
 ## Technical Approaches
