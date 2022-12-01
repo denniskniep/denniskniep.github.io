@@ -54,8 +54,17 @@ sequenceDiagram
     WebView-->>-Alice: FIDO not possible
 
     Alice->>+WebView: Start detached authentication
-    WebView-->>-Alice: 
+    WebView-->>-Alice: started
 
+    Alice->>+Browser: Launch Standard Browser
+    Browser-->>-Alice: launched
+
+    Alice->>+Browser: Execute FIDO authentication
+    Browser-->>-Alice: FIDO authentication successful
+
+    Alice->>+WebView: Switch back to App
+    WebView->>WebView: Ensure that all steps <br> originate from the same device
+    WebView-->>-Alice: detached authentication successful
 ```
 
 ## Technical Approaches
