@@ -43,6 +43,7 @@ With the “Detached FIDO Authentication” flow it is possible to “jump” ou
 
 ### High Level sequence diagram 
 ```mermaid
+
 sequenceDiagram
     autonumber
     actor Alice as Alice & Mobile Device
@@ -52,18 +53,6 @@ sequenceDiagram
     Alice->>+WebView: Starts FIDO authentication flow
     WebView-->>-Alice: FIDO not possible
 
-    Alice->>+WebView: Start detached authentication
-    WebView-->>-Alice: 
-
-    Alice->>+Browser: Launch Standard Browser
-    Browser-->>-Alice: 
-
-    Alice->>+Browser: Execute FIDO authentication
-    Browser-->>-Alice: FIDO authentication successful
-
-    Alice->>+WebView: Switch back to App
-    WebView->>WebView: Ensure that all steps <br> originate from the same device
-    WebView-->>-Alice: detached authentication successful
 ```
 
 ## Technical Approaches
