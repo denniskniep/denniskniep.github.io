@@ -17,6 +17,13 @@ menu:
           url: posts/
           weight: 10
 
+markup:
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+
 outputs:
     home:
         - HTML

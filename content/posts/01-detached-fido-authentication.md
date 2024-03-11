@@ -2,7 +2,7 @@
 title: "Detached FIDO Authentication"
 date: 2022-11-29T23:00:00+01:00
 draft: false
-tags: ["FIDO"]
+tags: ["FIDO","Passkeys"]
 author: ["Dennis Kniep", "Andreas Pellengahr"]
 comment: true
 ---
