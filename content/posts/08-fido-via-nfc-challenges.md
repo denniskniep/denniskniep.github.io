@@ -1,7 +1,7 @@
 ---
 title: "FIDO via NFC challenges"
-date: 2024-04-01T01:00:00+02:00
-draft: true
+date: 2025-04-01T01:00:00+02:00
+draft: false
 tags: ["FIDO", "Passkeys"]
 author: ["Dennis Kniep"]
 comment: true
@@ -11,7 +11,7 @@ Imagine if one could simply use FIDO Security Keys or Security Cards on any devi
 
 ## No Discoverable Credentials via NFC on Android
 
-One of the primary limitations of NFC on Android is its limited support for U2F (Universal 2nd Factor) only, which does not encompass the concept of Discoverable Credentials. This means that FIDO credentials created as non-discoverable are not forward-compatible with FIDO2. As a consequence, a user who registered a Security Key or Security Card as a Discoverable Credential on another operating systems cannot use it on Android via NFC.
+One of the primary limitations of NFC on Android is its support for U2F only, which does not encompass the concept of Discoverable Credentials. This means that FIDO credentials created as discoverable are not compatible. As a consequence, a user who registered a Security Key or Security Card as a Discoverable Credential on another operating systems cannot use it on Android via NFC.
 
 ## No User Verification via NFC on Android
 
@@ -20,7 +20,7 @@ Another challenge is the lack of support for User Verification via NFC on Androi
 ## Platform Passkeys Hide Roaming Authenticators on Android
 
 On Android, registering a Platform Passkey prevents the use of a Security Key or Security Card via NFC or USB.
-Without a button to switch authenticator type, users are limited in their ability to use stronger device-bound FIDO credentials.This limitation can hinder users from opting for more secure authentication methods when needed. It might be okay to use a synced platform passkey for non-critical apps, but in certain scenarios where higher assurance is necessary, a security key could be requested. However, it cannot be used if it's not selectable.
+Without a button to switch authenticator type, users are limited in their ability to use stronger device-bound FIDO credentials. This limitation can hinder users from opting for more secure authentication methods when needed. It might be okay to use a synced platform passkey for non-critical apps, but in certain scenarios where higher assurance is necessary, a security key could be requested. However, it cannot be used if it's not selectable.
 
 ## Issues with Chrome Passphrase
 
@@ -37,7 +37,7 @@ This issue does not appear on Windows. On Android there is not even the possibil
 
 If User Verification is set to "discouraged", then there seems to be no easily reachable limit (Tested with a Security Key)
 
-Interesting side-note: Android and Windows have a maximum limit of 64 allowedCredentials. If you have more credentials, you receive the following error: "RangeError: The `allowCredentials` attribute exceeds the maximum allowed size (64)."
+Interesting sidenote: Android and Windows have a maximum limit of 64 allowedCredentials. If you have more credentials, you receive the following error: "RangeError: The `allowCredentials` attribute exceeds the maximum allowed size (64)."
 This is a very reasonable limitation.
 
 ## No Indicator of NFC Data Transfer Progress on iOS & Windows
