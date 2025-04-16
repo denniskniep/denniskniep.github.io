@@ -1,5 +1,5 @@
 ---
-title: "FIDO via NFC challenges"
+title: "Challenges with FIDO via NFC"
 date: 2025-04-01T01:00:00+02:00
 draft: false
 tags: ["FIDO", "Passkeys"]
@@ -52,3 +52,6 @@ Sometimes, if a Security Key or Security Card is not connected prior to starting
 
 NFC is available on most mobile devices, such as Android or Apple phones. That's great, but workstations are often not shipped with NFC by default. Why? That's unfortunate because its not very expensive to include it and there is definitely a great use case out there for Security Cards which by design have no USB or other plug.
 To make those cards usable in future, companies should definetly change their order process to include NFC readers in workstations. For the consumer market it would also be a great use case if we look at online banking! Using your bank card with your workstation to do authentication and payment confirmation with your FIDO enabled bank card using NFC...!
+
+## Related Issues
+* https://issuetracker.google.com/issues/406833082
