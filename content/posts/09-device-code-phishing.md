@@ -43,10 +43,10 @@ Let's look at a different attack model that eliminates the limitations of the on
 1. The attacker sends a URL to the victim
 2. The victim opens that URL
 3. When the URL is opened, a headless browser is started, performing the following automated steps:
-    - Starts the Device Code Flow with `<tenant>` and `<clientId>`
-    - Opens the device-code webpage and enters the corresponding user-code
-    - The device-code webpage forwards to the URL for interactive authentication
-    - Returns the URL for interactive authentication as a redirect to the victim
+   - Starts the Device Code Flow with `<tenant>` and `<clientId>`
+   - Opens the device-code webpage and enters the corresponding user-code
+   - The device-code webpage forwards to the URL for interactive authentication
+   - Returns the URL for interactive authentication as a redirect to the victim
 4. The victim is redirected to the authentication URL
 5. The victim completes the authentication
 6. The attacker is authenticated
@@ -58,23 +58,28 @@ Using this attack model, it is just a URL that the user has to click. Since the 
 Actually, Device Code Flow phishing is even worse than normal phishing, because the user is using the original website he expects. Therefore he cannot detect that he is currently being attacked based on an phishy URL. Additionally, the user might not need to authenticate interactivly because a session is still active. Therefore, the user has almost no time to realize that this is not legitimate. And not to forget that Device Code Flow is underminding FIDO's phishing resistance!
 
 ## Proof of Concept
-I wrote a Proof of Concept (POC) that can be found [here](https://github.com/denniskniep/DeviceCodePhishing).
+
+I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found [here](https://github.com/denniskniep/DeviceCodePhishing). See [here](https://gist.github.com/user-attachments/assets/bf6d1c2d-7199-4394-824d-e6f57e8136a2) for a short demo video.
 Currently, this tool can only be used to target Microsoft Azure Entra Users. However, the technique itself is not limited to a certain vendor.
 
 ## Mitigation
+
 The only mitigation from my point of view is to deactivate the Device Code Flow!
 For Azure Entra, you can implement a [Conditional Access Policy that blocks the Device Code Flow](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-authentication-flows)
 
 ## Next steps with obtained tokens
+
 Once you have successfully obtained tokens, you can use them with other attack tools, such as:
-* https://github.com/dafthack/GraphRunner
-* https://github.com/f-bader/TokenTacticsV2?tab=readme-ov-file#azure-json-web-token-jwt-manipulation-toolset
-* https://github.com/secureworks/family-of-client-ids-research
+
+- https://github.com/dafthack/GraphRunner
+- https://github.com/f-bader/TokenTacticsV2?tab=readme-ov-file#azure-json-web-token-jwt-manipulation-toolset
+- https://github.com/secureworks/family-of-client-ids-research
 
 ## Further Links
-* Microsoft's Threat Intelligence is also reporting about it: [Storm-2372 conducts device code phishing campaign](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/#:~:text=In%20device%20code%20phishing%2C%20threat,compromised%20account%20has%20access%20to)
-* [Official Microsoft Docs](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code)
-* [squarephish (using normal attack model)](https://github.com/secureworks/squarephish)
-* [Blog about Storm-2372 (using normal attack model)](https://jeffreyappel.nl/how-to-protect-against-device-code-flow-abuse-storm-2372-attacks-and-block-the-authentication-flow/)
-* [Device Code Phishing - Deep Dive](https://aadinternals.com/post/phishing/)
-* [IETF - Cross Device Security](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-cross-device-security#name-cross-device-protocols-and-)
+
+- Microsoft's Threat Intelligence is also reporting about it: [Storm-2372 conducts device code phishing campaign](https://www.microsoft.com/en-us/security/blog/2025/02/13/storm-2372-conducts-device-code-phishing-campaign/#:~:text=In%20device%20code%20phishing%2C%20threat,compromised%20account%20has%20access%20to)
+- [Official Microsoft Docs](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code)
+- [squarephish (using normal attack model)](https://github.com/secureworks/squarephish)
+- [Blog about Storm-2372 (using normal attack model)](https://jeffreyappel.nl/how-to-protect-against-device-code-flow-abuse-storm-2372-attacks-and-block-the-authentication-flow/)
+- [Device Code Phishing - Deep Dive](https://aadinternals.com/post/phishing/)
+- [IETF - Cross Device Security](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-cross-device-security#name-cross-device-protocols-and-)
