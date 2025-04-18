@@ -45,13 +45,13 @@ Let's look at a different attack model that eliminates the limitations of the on
 3. When the URL is opened, a headless browser is started, performing the following automated steps:
     - Starts the Device Code Flow with `<tenant>` and `<clientId>`
     - Opens the device-code webpage and enters the corresponding user-code
-    - The device-code webpage forwards the user to the URL for interactive authentication
+    - The device-code webpage forwards to the URL for interactive authentication
     - Returns the URL for interactive authentication as a redirect to the victim
 4. The victim is redirected to the authentication URL
 5. The victim completes the authentication
 6. The attacker is authenticated
 
-Using this attack model, it is just a URL that the user has to click. Since the Device Code Flow is only started when the user clicks on the URL, the 10 minute time frame limitation no longer applies.
+Using this attack model, it is just a URL that the user has to click. Since the Device Code Flow is only started when the user clicks on the URL, the 10 minute time frame limitation no longer limits the success.
 
 ## More dangerous than normal AitM phishing
 
