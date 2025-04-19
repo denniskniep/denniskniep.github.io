@@ -59,7 +59,15 @@ Actually, Device Code Flow phishing is even worse than normal phishing, because 
 
 ## Proof of Concept
 
-I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found [here](https://github.com/denniskniep/DeviceCodePhishing). See [here](https://gist.github.com/user-attachments/assets/bf6d1c2d-7199-4394-824d-e6f57e8136a2) for a short demo video.
+I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found here: [https://github.com/denniskniep/DeviceCodePhishing](https://github.com/denniskniep/DeviceCodePhishing). 
+
+* It´s a phishing server leveraging the Device Code Flow
+* Capable of bypassing FIDO, even if FIDO is the only authentication method available to the victim
+* Victim visits the phishing URL and is instantly redirected to the authentication page (no need for the victim to manually enter the code)
+* Victim completes authentication on the original webpage (no suspicious URL involved)
+
+You can see it in action in this [Demo Video](https://gist.github.com/user-attachments/assets/bf6d1c2d-7199-4394-824d-e6f57e8136a2)
+
 Currently, this tool can only be used to target Microsoft Azure Entra Users. However, the technique itself is not limited to a certain vendor.
 
 ## Mitigation
