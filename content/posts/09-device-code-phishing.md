@@ -1,6 +1,6 @@
 ---
 title: "Phishing despite FIDO, leveraging the device code flow"
-date: 2025-04-03T20:00:00+02:00
+date: 2025-04-18T13:00:00+02:00
 draft: false
 tags: ["FIDO", "Passkeys", "Security", "Phishing"]
 author: ["Dennis Kniep"]
@@ -55,7 +55,7 @@ Using this attack model, it is just a URL that the user has to click. Since the 
 
 ## More dangerous than normal AitM phishing
 
-Actually, Device Code Flow phishing is even worse than normal phishing, because the user is using the original website he expects. Therefore he cannot detect that he is currently being attacked based on an phishy URL. Additionally, the user might not need to authenticate interactivly because a session is still active. Therefore, the user has almost no time to realize that this is not legitimate. And not to forget that Device Code Flow is underminding FIDO's phishing resistance!
+Actually, Device Code Flow phishing is even worse than Attacker in the Middle (AitM) phishing, because the user is using the original website he expects. Therefore he cannot detect that he is currently being attacked based on an phishy URL. Additionally, the user might not need to authenticate interactivly because a session is still active. Therefore, the user has almost no time to realize that this is not legitimate. And not to forget that Device Code Flow is underminding FIDO's phishing resistance!
 
 ## Proof of Concept
 
