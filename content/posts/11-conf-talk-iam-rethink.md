@@ -9,7 +9,7 @@ comment: false
 Conference Talk at [Rethink!IAM 2025](https://www.rethink-iam.de)
 
 ## IAM as First Line of Defense
-All-in on Passkeys - Allow Passkeys exclusively for all users – with no fallback to Password, SMS, Call or App
-Passkey Challenges – Recovery, Multi-IdPs, Apps on iOS/Android, NFC, etc.
-Control over Trust – Identities, Credentials & Authentications
-Identity Data Lake – All Data for automation
+* All-in on Passkeys - Allow Passkeys exclusively for all users – with no fallback to Password, SMS, Call or App
+* Passkey Challenges – Recovery, Multi-IdPs, Apps on iOS/Android, NFC, etc.
+* Control over Trust – Identities, Credentials & Authentications
+* Identity Data Lake – All Data for automation

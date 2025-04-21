@@ -66,7 +66,7 @@ Actually, Device Code Flow phishing is even worse than Attacker in the Middle (A
 
 ## Proof of Concept
 
-I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found here: [https://github.com/denniskniep/DeviceCodePhishing](https://github.com/denniskniep/DeviceCodePhishing).
+I wrote a Proof of Concept (POC) of the described "Novel Attack Model", which can be found here: [https://github.com/denniskniep/DeviceCodePhishing](https://github.com/denniskniep/DeviceCodePhishing).
 
 - It´s a phishing server leveraging the Device Code Flow
 - Capable of bypassing FIDO, even if FIDO is the only authentication method available to the victim
