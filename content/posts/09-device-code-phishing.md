@@ -1,5 +1,5 @@
 ---
-title: "Phishing despite FIDO, leveraging the device code flow"
+title: "Phishing despite FIDO, leveraging a novel technique based on the Device Code Flow"
 date: 2025-04-18T13:00:00+02:00
 draft: false
 tags: ["FIDO", "Passkeys", "Security", "Phishing"]
@@ -7,8 +7,15 @@ author: ["Dennis Kniep"]
 comment: true
 ---
 
+## TL;DR;
+
+This is a novel technique that leverages the well-known Device Code phishing approach. It dynamically initiates the flow when the victim opens the phishing link and instantly redirects them to the authentication page. A headless browser automates the flow by starting the Device Code process and entering the code into the webpage, eliminating the need for the victim to manually perform these steps. This defeats the 10-minute token validity limitation.  
+What makes Device Code phishing especially dangerous is its ability to bypass FIDO’s phishing protection. Additionally, the victim interacts with the original website they expect, making it impossible to detect the attack based on a suspicious URL.
+
+## Bypassing FIDO
+
 If you use FIDO within your authentication process, then the assumption is that the user is resistant to phishing.
-However, if you use FIDO in combination with OIDC/OAuth Device Code Flow, it turns out that the authentication procedure is no longer phishing resistant.
+However, if you use FIDO in combination with Device Code Flow ([OAuth 2.0 Device Authorization Grant](https://datatracker.ietf.org/doc/html/rfc8628)), it turns out that the authentication procedure is no longer phishing resistant.
 
 Because of the nature of the Device Code Flow, you are authenticating on a different device than the token is actually issued to. The FIDO mechanism cannot enforce phishing resistance on an out-of-band channel.
 
@@ -24,7 +31,7 @@ Let's assume you use the FIDO authentication method in your tenant. You configur
 
 I will not go into technical details of the Device Code Flow as there are other excellent blog posts that cover this topic in detail. For a deeper understanding, I recommend reading [Introducing a new phishing technique for compromising Office 365 accounts](https://aadinternals.com/post/phishing/)
 
-## Normal Attack Model
+## Already Existing Attack Model
 
 I often see blogs describing the Device Code Flow phishing technique with certain limitations for the attackers. The assumed attack model typically follows these steps:
 
@@ -34,11 +41,11 @@ I often see blogs describing the Device Code Flow phishing technique with certai
 4. The victim completes the authentication
 5. The attacker is authenticated
 
-The consequence of this attack model is that, once the code is generated, the attacker has only 10 minutes to convince the user to open the URL and enter the code. I agree that this would not be an easy task for an attacker.
+The consequence of this attack model is that, once the code is generated, the attacker has only 10 minutes to convince the victim to open the URL and enter the code. I agree that this would not be an easy task for an attacker. Additionally, convincing a victim to manually enter a code can often appear more suspicious than simply asking them to open a URL, making the attack even more challenging.
 
-## Sophisticated Attack Model
+## Novel Attack Model
 
-Let's look at a different attack model that eliminates the limitations of the one above:
+Let's look at a novel and more sophisticated attack model that eliminates the limitations of the one above:
 
 1. The attacker sends a URL to the victim
 2. The victim opens that URL
@@ -51,20 +58,20 @@ Let's look at a different attack model that eliminates the limitations of the on
 5. The victim completes the authentication
 6. The attacker is authenticated
 
-Using this attack model, it is just a URL that the user has to click. Since the Device Code Flow is only started when the user clicks on the URL, the 10 minute time frame limitation no longer limits the success.
+Using this attack model, it is just a URL that the victim has to click. Since the Device Code Flow is only started when the victim clicks on the URL, the 10 minute time frame limitation no longer limits the success. Additionally, it eliminates the need to convince the victim to manually enter a code, which is certainly less suspicious.
 
 ## More dangerous than normal AitM phishing
 
-Actually, Device Code Flow phishing is even worse than Attacker in the Middle (AitM) phishing, because the user is using the original website he expects. Therefore he cannot detect that he is currently being attacked based on an phishy URL. Additionally, the user might not need to authenticate interactivly because a session is still active. Therefore, the user has almost no time to realize that this is not legitimate. And not to forget that Device Code Flow is underminding FIDO's phishing resistance!
+Actually, Device Code Flow phishing is even worse than Attacker in the Middle (AitM) phishing, because the victim is using the original website he expects. Therefore he cannot detect that he is currently being attacked based on an phishy URL. Additionally, the victim might not need to authenticate interactivly because a session is still active. Therefore, the victim has almost no time to realize that this is not legitimate. And not to forget that Device Code Flow is underminding FIDO's phishing resistance!
 
 ## Proof of Concept
 
-I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found here: [https://github.com/denniskniep/DeviceCodePhishing](https://github.com/denniskniep/DeviceCodePhishing). 
+I wrote a Proof of Concept (POC) of the described "Sophisticated Attack Model", which can be found here: [https://github.com/denniskniep/DeviceCodePhishing](https://github.com/denniskniep/DeviceCodePhishing).
 
-* It´s a phishing server leveraging the Device Code Flow
-* Capable of bypassing FIDO, even if FIDO is the only authentication method available to the victim
-* Victim visits the phishing URL and is instantly redirected to the authentication page (no need for the victim to manually enter the code)
-* Victim completes authentication on the original webpage (no suspicious URL involved)
+- It´s a phishing server leveraging the Device Code Flow
+- Capable of bypassing FIDO, even if FIDO is the only authentication method available to the victim
+- Novel approach: Victim visits the phishing URL and is instantly redirected to the authentication page (no need for the victim to manually enter the code)
+- Victim completes authentication on the original webpage (no suspicious URL involved)
 
 You can see it in action in this [Demo Video](https://gist.github.com/user-attachments/assets/bf6d1c2d-7199-4394-824d-e6f57e8136a2)
 
@@ -91,3 +98,4 @@ Once you have successfully obtained tokens, you can use them with other attack t
 - [Blog about Storm-2372 (using normal attack model)](https://jeffreyappel.nl/how-to-protect-against-device-code-flow-abuse-storm-2372-attacks-and-block-the-authentication-flow/)
 - [Device Code Phishing - Deep Dive](https://aadinternals.com/post/phishing/)
 - [IETF - Cross Device Security](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-cross-device-security#name-cross-device-protocols-and-)
+- [OAuth 2.0 Device Authorization Grant](https://datatracker.ietf.org/doc/html/rfc8628)
