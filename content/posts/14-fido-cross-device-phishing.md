@@ -18,7 +18,7 @@ First of all, I want to make clear that I am 100% convinced of FIDO. That's a ga
 Another clarification up front to avoid any potential misunderstandings. This works ONLY if attacker has placed device(s) in BLE range (~150m) near the victim(s).
 From my point of view that is a valid attack scenario, think campuses, offices, airports, events, etc. The attacker only needs to place devices in physical proximity in public spaces, without personal contact. They probably don't need access to any private or restricted areas.
 
-## Simlified Fido authentication with hybrid (caBLE) Flow
+## Sipmlified Fido authentication with hybrid (caBLE) Flow
 
 Before we dive into the abuse case, let’s look at the normal flow.
 
@@ -146,5 +146,6 @@ It would mainly require modeling the platform‑specific dialogs. Building HTML 
 
 The logic that listens for Bluetooth Low Energy (BLE) advertisements could also be built into a mobile application. If such an app achieves broad distribution, it could passively collect nearby signals and relay them to the server, reducing the need for dedicated beacons while expanding coverage.
 
-## Related Topics
+## Further Links
+- https://github.com/w3c/webauthn/issues/2349
 - https://mastersplinter.work/research/passkey/#cve-2024-9956

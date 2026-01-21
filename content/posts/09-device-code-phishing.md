@@ -13,7 +13,7 @@ EDIT 19.09.2025: Microsoft fixed it for normal Entra tenants, but still possible
 
 This is a novel technique that leverages the well-known Device Code phishing approach. It dynamically initiates the flow as soon as the victim opens the phishing link and instantly redirects them to the authentication page. 
 A headless browser automates this by directly entering the generated Device Code into the webpage behind the scenes. This defeats the 10-minute token validity limitation and eliminates the need for the victim to manually perform these steps, elevating the efficiency of the attack to a new level.  
-What makes Device Code phishing especially dangerous is that no authentication method, not even FIDO, is able to protect against this type of attack. Additionally, the victim interacts with the original website they expect, making it impossible to detect the attack based on a suspicious URL.
+What makes Device Code phishing especially dangerous is that no authentication method, not even FIDO, is able to protect against this type of attack. Additionally, the victim interacts with the original website they expect, making it impossible to detect the attack based on a suspicious URL. See [Proof of Concept](https://github.com/denniskniep/DeviceCodePhishing) and [Demo Video](https://gist.github.com/user-attachments/assets/bf6d1c2d-7199-4394-824d-e6f57e8136a2)
 
 ## Phishing despite FIDO
 

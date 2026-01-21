@@ -11,6 +11,8 @@ socialIcons:
     url: "https://twitter.com/dennis_kniep"
   - name: "mastodon"
     url: "https://infosec.exchange/@dennis_kniep"
+  - name: "linkedin"
+    url: "https://de.linkedin.com/in/dennis-kniep-a224381b5"
 ---
 
 {{< author_page >}}
